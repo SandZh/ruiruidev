@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.article-title{
+  text-align: center;
+  text-shadow: 1px 1px black;
+}
+
+.article-text{
+  text-align: center;
+  letter-spacing: 3px;
+  line-height: 2.0;
+  word-spacing: 1px;
+}
