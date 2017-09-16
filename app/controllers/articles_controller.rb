@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user! , only: [:new, :create, :edit, :update, :destroy]
   before_action :find_article_and_check_permission, only: [:edit, :update, :destroy]
-
+  before_action :require_admin
   def index
     @articles = Article.all
   end
@@ -40,12 +40,18 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-  
+
 
     @article.destroy
     redirect_to articles_path
   end
 
+  def require_admin
+    if !current_user.admin?
+      flash[:alert] = 'You are not admin'
+      redirect_to root_path
+    end
+  end
 
   private
 
